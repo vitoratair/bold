@@ -36,7 +36,8 @@ class OmdbSyncAPIView(generics.GenericAPIView, CoreHelper):
             return
 
         #### Adapter will send a POST request with all movies to the CORE application ####
-        self.make_post_core("http://localhost:8000/api/movie/", request.auth, data_serialized.data)
+        url = "http://localhost:8000/api/movie/" ### DEV ONLY
+        self.make_post_core(url, request.auth, data_serialized.data)
 
     def get(self, request):
         logger.info("OmdbSyncAPIView - GET received")

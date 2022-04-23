@@ -6,3 +6,4 @@ GOT = "Game of Thrones"
 MOVIE_RESOURCE = "movies"
 
 ### ADAPTERS ####
+OMDB_ADAPTER = "OMDB"
