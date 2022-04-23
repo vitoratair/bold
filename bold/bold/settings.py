@@ -206,18 +206,21 @@ LOGGING = {
 
 
 ADMIN_REORDER = (
-    {'app': 'auth', 'label': 'Authorization'},
-    {'app': 'oauth2_provider', 'label': 'Oauth2'},
     {
-        'app': 'core', 'label': 'Core - Managements',
-        'models': ('core.Subscriber',)
+        'app': 'auth', 'label': 'Core - Auth managements',
+        'models': (
+            'auth.User',
+            'oauth2_provider.Application',
+            'oauth2_provider.AccessToken',
+            'core.Subscriber'
+        )
     },
     {
-        'app': 'core', 'label': 'Resource - Movies',
+        'app': 'core', 'label': 'Resource',
         'models': ('core.Movie', 'core.Episode')
     },
     {
-        'app': 'omdb_adapter', 'label': 'Adapter - OMDB management',
+        'app': 'omdb_adapter', 'label': 'Adapter',
         'models': ('omdb_adapter.Mapper',)
     }
 )
