@@ -181,15 +181,27 @@ LOGGING = {
             'handlers': ['console'],
             'level': 'DEBUG',
             'propagate': False,
-        }
+        },
+        'core_logger': {
+            'handlers': ['logfile', 'console'],
+            'level': 'DEBUG',
+            'propagate': True
+        },
+        'api_movie': {
+            'handlers': ['logfile', 'console'],
+            'level': 'DEBUG',
+            'propagate': True
+        },
     }
 }
 
 
 ADMIN_REORDER = (
     {'app': 'auth', 'label': 'Authorization'},
+    {'app': 'oauth2_provider', 'label': 'Oauth2'},
     {
-        'app': 'oauth2_provider', 'label': 'Oauth2'
+        'app': 'core', 'label': 'Resource - Movies',
+        'models': ('core.Movie', 'core.Episode')
     },
 )
 

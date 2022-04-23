@@ -22,8 +22,9 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    path('api/', include(('core.urls','core'), namespace="core")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
-admin.site.site_header = 'Valar morghulis'
-admin.site.index_title = 'BOLD administration'
+admin.site.site_header = 'Devoteam'
+admin.site.index_title = 'Biarvose, azantys'
