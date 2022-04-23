@@ -1,0 +1,18 @@
+[
+    {
+      "model": "omdb_adapter.Mapper",
+      "pk": 1,
+      "fields": {
+        "name": "AUTH_SETTINGS",
+        "mapper": {"token": "apikey=707b99bc"}
+      }
+    },
+    {
+      "model": "omdb_adapter.Mapper",
+      "pk": 2,
+      "fields": {
+        "name": "URLS",
+        "mapper": {"movie": "http://www.omdbapi.com/?t=%s&%s", "season": "http://www.omdbapi.com/?i=%s&%s"}
+      }
+    }
+  ]

@@ -12,6 +12,7 @@ WORKDIR /app
 
 RUN python manage.py makemigrations
 RUN python manage.py migrate
+RUN python manage.py loaddata fixture.json
 RUN python manage.py collectstatic --no-input
 
 COPY ./entrypoint.sh /
