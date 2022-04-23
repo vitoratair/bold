@@ -32,9 +32,9 @@ ALLOWED_HOSTS = ['*']
 
 
 DEFAULT_ADMIN_CREDENTIALS = {
-    'username': 'winter',
-    'password': 'iscomming',
-    'email': 'valar@morghulis'
+    'username': 'bold',
+    'password': 'devoteam',
+    'email': 'bold@devoteam'
 }
 
 # Application definition
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'oauth2_provider',
     'core',
+    'omdb_adapter',
 ]
 
 
@@ -59,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'admin_reorder.middleware.ModelAdminReorder',
 ]
 
 ROOT_URLCONF = 'bold.urls'
@@ -192,6 +194,11 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True
         },
+        'adapter_omdb': {
+            'handlers': ['logfile', 'console'],
+            'level': 'DEBUG',
+            'propagate': True
+        },
     }
 }
 
@@ -203,8 +210,23 @@ ADMIN_REORDER = (
         'app': 'core', 'label': 'Resource - Movies',
         'models': ('core.Movie', 'core.Episode')
     },
+    {
+        'app': 'omdb_adapter', 'label': 'Adapter - OMDB management',
+        'models': ('omdb_adapter.Mapper',)
+    }
 )
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
+}
 
 OAUTH2_PROVIDER = {
     'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'}
