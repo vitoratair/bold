@@ -1,6 +1,7 @@
 from core.models import Subscriber
 from django.db import models
 from django.utils import timezone
+from django.db.models import Avg
 
 
 class Movie(models.Model):
@@ -33,6 +34,26 @@ class Movie(models.Model):
 
     def __str__(self):
         return "%s" % (self.title)
+
+
+    def total_episodes(self):
+        """
+            Must return the count of all episodes associated with the movie instance
+        """
+
+        return Episode.objects.filter(movie_id=self.id).count()
+
+    def rating_average(self):
+        """
+            Must return the rating avg of all episodes associated with the movie instance
+        """
+        queryset = Episode.objects.filter(
+            movie_id=self.id
+        ).aggregate(
+            Avg('rating')
+        )
+
+        return '{0:.2f}'.format(queryset.get('rating__avg'))
 
 class Episode(models.Model):
     """
