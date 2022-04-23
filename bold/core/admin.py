@@ -4,7 +4,7 @@ from core.models import Subscriber
 
 #### All adapters and resources must be import here ####
 from core.movies import admin as movies_admin
-
+from omdb_adapter import admin as omdb_adapter_admin
 
 class SubscriberAdmin(admin.ModelAdmin):
     list_filter = ('resource',)

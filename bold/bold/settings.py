@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'drf_yasg',
+    'rest_framework_swagger',
     'oauth2_provider',
     'core',
     'omdb_adapter',
@@ -206,6 +208,10 @@ LOGGING = {
 ADMIN_REORDER = (
     {'app': 'auth', 'label': 'Authorization'},
     {'app': 'oauth2_provider', 'label': 'Oauth2'},
+    {
+        'app': 'core', 'label': 'Core - Managements',
+        'models': ('core.Subscriber',)
+    },
     {
         'app': 'core', 'label': 'Resource - Movies',
         'models': ('core.Movie', 'core.Episode')

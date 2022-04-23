@@ -11,8 +11,6 @@ logger = logging.getLogger('adapter_omdb')
 class ConnectionService:
 
     def __init__(self, **kargs):
-        """_summary_
-        """
 
         if kargs.get('auth'):
             self.auth = kargs.get('auth')

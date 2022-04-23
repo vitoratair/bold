@@ -3,8 +3,9 @@ import threading
 
 from core import constants as c
 from core.commons.helper import Helper as CoreHelper
-
-from rest_framework import generics, status
+from oauth2_provider.contrib.rest_framework import TokenHasReadWriteScope
+from rest_condition import Or
+from rest_framework import generics, permissions, status
 from rest_framework.response import Response
 
 from omdb_adapter.connection_service import ConnectionService
@@ -14,12 +15,11 @@ logger = logging.getLogger('adapter_omdb')
 
 
 class OmdbSyncAPIView(generics.GenericAPIView, CoreHelper):
-    """."""
 
-    permission_classes = []
+    permission_classes = [Or(permissions.IsAdminUser, permissions.IsAuthenticated, TokenHasReadWriteScope)]
     serializer_class = OmdbMoviesListSerializer
 
-    def _process_on_thread(self, request, subscriber):
+    def _process_on_thread(self, request):
         """Must process the request payload on a thread to prevent timeout errors."""
 
         service = ConnectionService()
@@ -36,6 +36,7 @@ class OmdbSyncAPIView(generics.GenericAPIView, CoreHelper):
             return
 
         #### Adapter will send a POST request with all movies to the CORE application ####
+        self.make_post_core("http://localhost:8000/api/movie/", request.auth, data_serialized.data)
 
     def get(self, request):
         logger.info("OmdbSyncAPIView - GET received")
@@ -44,6 +45,6 @@ class OmdbSyncAPIView(generics.GenericAPIView, CoreHelper):
         if subscriber is None:
             return Response({'error':True, 'error':"Targeted subscriber was not found."}, status=status.HTTP_404_NOT_FOUND)
 
-        threading.Thread(target=self._process_on_thread, args=(request, subscriber)).start()
+        threading.Thread(target=self._process_on_thread, args=(request,)).start()
 
         return Response({}, status=status.HTTP_200_OK)

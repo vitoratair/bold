@@ -14,7 +14,6 @@ logger = logging.getLogger('api_movie')
 
 
 class MovieResourceAPIView(generics.GenericAPIView, MovieHelper):
-    """."""
 
     permission_classes = []
     queryset = Episode.objects.select_related('movie').all()

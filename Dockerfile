@@ -14,6 +14,7 @@ RUN python manage.py makemigrations
 RUN python manage.py migrate
 RUN python manage.py loaddata fixture.json
 RUN python manage.py collectstatic --no-input
+RUN python manage.py runserver
 
 COPY ./entrypoint.sh /
 ENTRYPOINT ["sh", "/entrypoint.sh"]
