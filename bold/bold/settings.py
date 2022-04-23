@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'oauth2_provider',
     'core',
 ]
 
@@ -187,4 +188,16 @@ LOGGING = {
 
 ADMIN_REORDER = (
     {'app': 'auth', 'label': 'Authorization'},
+    {
+        'app': 'oauth2_provider', 'label': 'Oauth2'
+    },
 )
+
+
+OAUTH2_PROVIDER = {
+    'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'}
+}
+
+SILENCED_SYSTEM_CHECKS = [
+    'django_jsonfield_backport.W001'
+]
