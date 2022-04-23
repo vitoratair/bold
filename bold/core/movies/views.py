@@ -41,7 +41,7 @@ class MovieResourceAPIView(generics.GenericAPIView, MovieHelper, AdaptersHelper,
 
         queryset = Episode.objects.select_related('movie').all()
 
-        title = self.request.query_params.get('title')
+        title = self.request.query_params.get('title', c.GOT)
         season = self.request.query_params.get('season')
         episode = self.request.query_params.get('episode')
         episode_id = self.request.query_params.get('episode_id')
@@ -69,8 +69,8 @@ class MovieResourceAPIView(generics.GenericAPIView, MovieHelper, AdaptersHelper,
 
 
     def get(self, request):
+        logger.info("MovieResourceAPIView - GET received")
 
-        start = timeit.default_timer()
         queryset = self.get_queryset()
 
         serializer_episodes = EpisodeListSerializer(data=queryset, many=True)
@@ -87,10 +87,8 @@ class MovieResourceAPIView(generics.GenericAPIView, MovieHelper, AdaptersHelper,
         serializer_movie.is_valid()
         data = list(serializer_movie.data)[0]
         data['episodes'] = serializer_episodes.data
-        stop = timeit.default_timer()
-        logger.info("Time: %s" % (stop - start))
 
-        return Response(data)
+        return Response(data, status=status.HTTP_200_OK)
 
     def delete(self, request, *args, **kwargs):
         """
