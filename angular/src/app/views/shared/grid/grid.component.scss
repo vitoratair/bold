@@ -1,0 +1,44 @@
+// TABLE
+table {
+  width: 100%;
+}
+
+td , th {
+   white-space: normal;
+   word-wrap: break-word;
+   max-width: 300px;
+}
+
+.table-row {
+  height: 30px !important;
+}
+
+.mat-column-id {
+    flex: none;
+    width: 70px;
+}
+
+.th-center{
+  text-align: center;
+}
+.th-left{
+  text-align: left;
+}
+.th-right{
+  text-align: right;
+}
+
+.mat-row:nth-child(even){
+  background-color: #eee;
+}
+
+
+
+button:focus {
+  outline:none
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}

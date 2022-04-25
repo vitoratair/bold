@@ -1,0 +1,188 @@
+<span *ngIf="data">
+	<div class="loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
+		<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+		<div class="rate-limit-reached" *ngIf="isRateLimitReached">
+			API rate limit has been reached. It will be reset in one minute.
+		</div>
+	</div>
+
+	<div
+		class=""
+		style="text-align: center;"
+		*ngIf="
+			data &&
+			data.length === 0 &&
+			!isLoadingResults &&
+			!isRateLimitReached
+		"
+	>
+		No records found :(
+	</div>
+
+	<div class="row" *ngIf="data.length > 0 || !no_filter">
+		<div class="col-md-11" style="text-align: right;">
+			<mat-form-field *ngIf="gridConfig.filter">
+				<mat-label>Search</mat-label>
+				<input
+					matInput
+					(keyup)="applyFilter($event)"
+					placeholder="Ex. GOT && goT"
+				/>
+			</mat-form-field>
+		</div>
+
+		<div
+			*ngIf="gridConfig.toggleColumns"
+			class="col-md-1"
+			style="text-align: right; margin-top: 12px;"
+		>
+			<button mat-button [matMenuTriggerFor]="menu">
+				<mat-icon aria-hidden="false">more_vert</mat-icon>
+			</button>
+			<mat-menu #menu="matMenu">
+				<span *ngFor="let col of gridConfig.columns">
+					<button
+						*ngIf="col.name !== '#'"
+						mat-menu-item
+						(click)="
+							columnClick(col.data); $event.stopPropagation()
+						"
+					>
+						<mat-icon *ngIf="isColumnVisible(col.data)"
+							>check</mat-icon
+						>
+						<mat-icon *ngIf="!isColumnVisible(col.data)"
+							>close</mat-icon
+						>
+						<span>{{ col.name }}</span>
+					</button>
+				</span>
+			</mat-menu>
+		</div>
+	</div>
+
+	<div class="table-container">
+		<table
+			mat-table
+			[dataSource]="data"
+			matSort
+			matSortActive="id"
+			matSortDisableClear
+			matSortDirection="desc"
+		>
+			<ng-container
+				*ngFor="let col of gridConfig.columns"
+				[matColumnDef]="col.data"
+			>
+				<span *ngIf="gridConfig.checkbox && col.name === '#'">
+					<th mat-header-cell *matHeaderCellDef>
+						<mat-checkbox
+							[color]="'primary'"
+							(change)="$event ? masterToggle() : null; rowEmit()"
+							[checked]="selection.hasValue() && isAllSelected()"
+							[indeterminate]="
+								selection.hasValue() && !isAllSelected()
+							"
+							[aria-label]="checkboxLabel()"
+						>
+						</mat-checkbox>
+					</th>
+					<td mat-cell *matCellDef="let element">
+						<mat-checkbox
+							[color]="'primary'"
+							(click)="$event.stopPropagation()"
+							(change)="
+								$event ? selection.toggle(element) : null;
+								rowEmit()
+							"
+							[checked]="selection.isSelected(element)"
+							[aria-label]="checkboxLabel(element)"
+						>
+						</mat-checkbox>
+					</td>
+				</span>
+
+				<span *ngIf="!gridConfig.checkbox && col.name === '#'">
+					<th mat-header-cell *matHeaderCellDef>{{ col.name }}</th>
+					<td mat-cell *matCellDef="let element">
+						<button
+							aria-hidden="false"
+							mat-icon-button
+							[matMenuTriggerFor]="menu"
+						>
+							<mat-icon aria-hidden="false">more_vert</mat-icon>
+						</button>
+						<mat-menu #menu="matMenu">
+							<span *ngFor="let m of col.menu">
+								<button
+									*ngIf="showMenuItem(m, element)"
+									mat-menu-item
+									(click)="menuEventClick(m.id, element)"
+								>
+									<mat-icon>{{ m.icon }}</mat-icon>
+									<span>{{ m.label }}</span>
+								</button>
+								<button
+									disabled
+									*ngIf="!showMenuItem(m, element)"
+									mat-menu-item
+									(click)="
+										$event.stopPropagation();
+										$event.preventDefault()
+									"
+								>
+									<mat-icon>{{ m.icon }}</mat-icon>
+									<span>{{ m.label }}</span>
+								</button>
+							</span>
+						</mat-menu>
+					</td>
+				</span>
+
+				<span *ngIf="col.sortable">
+					<th
+						mat-header-cell
+						*matHeaderCellDef
+						[mat-sort-header]="col.sort_by"
+						[id]="col.sort_by"
+					>
+						{{ col.name }}
+					</th>
+				</span>
+				<span *ngIf="!col.sortable">
+					<th mat-header-cell *matHeaderCellDef>{{ col.name }}</th>
+				</span>
+
+				<td mat-cell *matCellDef="let element">
+					<span *ngIf="!col.deep_desc && col.type === 'text'">{{
+						element[col.data]
+					}}</span>
+					<span *ngIf="!col.deep_desc && col.type === 'currency'">{{
+						element[col.data] | currency
+					}}</span>
+					<span *ngIf="!col.deep_desc && col.type === 'number'">{{
+						element[col.data] | number: '1.2-2'
+					}}</span>
+					<span *ngIf="!col.deep_desc && col.type === 'number-int'">{{
+						element[col.data] | number: '1.0-0'
+					}}</span>
+
+					<span *ngIf="col.deep_desc">
+						<span *ngIf="element[col.data]">
+							{{ element[col.data][col.deep_desc] }}
+						</span>
+					</span>
+				</td>
+			</ng-container>
+
+			<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+			<tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+		</table>
+	</div>
+	<mat-paginator
+		[length]="resultsLength"
+		[pageSize]="gridConfig.limit"
+		showFirstLastButtons
+		[pageSizeOptions]="[10, 25, 50]"
+	></mat-paginator>
+</span>

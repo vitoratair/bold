@@ -1,0 +1,51 @@
+<br/>
+
+
+<div class="animated fadeIn">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+				<div class="col-md-12" style="text-align: right">
+
+					<span style="float: left;">
+						<h3 [innerText]="headerTitle"></h3>
+					</span>
+
+					<button *ngIf="show_movie_profile" (click)="goBack()" class="btn btn-square btn-light" type="button">
+						<i class="fa fa-back"></i>&nbsp;Back
+					</button>
+
+					<button *ngIf="!show_movie_profile" class="btn btn-square btn-primary" (click)="syncDatabase()" type="button">
+						<i class="fa fa-sync"></i>&nbsp;Sync from OMDB
+					</button>
+					&nbsp;&nbsp;
+					<button *ngIf="!show_movie_profile" class="btn btn-square btn-danger" (click)="showMessageDelete()" type="button">
+						<i class="fa fa-delete"></i>&nbsp;Clean database
+					</button>
+				</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="animated fadeIn">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+
+                <div class="col-md-12" *ngIf="show_movie_list">
+                    <app-grid *ngIf="rows"  (rowClick)="rowClick($event)" [rows]="rows" [gridConfig]="gridConfig"></app-grid>
+                </div>
+
+				<div class="col-md-12" *ngIf="show_movie_profile">
+					<app-movie-profile [movie]="movie"></app-movie-profile>
+				</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,21 @@
+{
+	"tabWidth": 4,
+	"semi": true,
+	"singleQuote": true,
+	"useEslint": false,
+	"useStylelint": false,
+	"useEditorConfig": true,
+	"formatOnSaveOptions": {
+		"enabled": true,
+		"respectEslintignore": true,
+		"showInStatusBar": true,
+		"excludedGlobs": [],
+		"whitelistedGlobs": [],
+		"isDisabledIfNotInPackageJson": false,
+		"isDisabledIfNoConfigFile": false,
+		"ignoreNodeModules": true
+	},
+	"prettierEslintOptions": {
+		"prettierLast": false
+	}
+}

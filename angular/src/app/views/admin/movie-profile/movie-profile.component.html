@@ -1,0 +1,34 @@
+
+<div class="card mb-3">
+	<div class="row g-0">
+	  <div class="col-md-4">
+		<img src="{{data?.poster_url}}" class="img-fluid rounded-start" alt="{{data?.title}}">
+	  </div>
+	  <div class="col-md-8">
+		<div class="card-body">
+		  <h5 class="card-title">{{data?.title}}</h5>
+		  <p class="card-text">{{data?.plot}}</p>
+		  <p class="card-text">
+			  Year: {{data?.year}} <br/>
+			  Released: {{data?.released}} <br/>
+			  Genre: {{data?.genre}} <br/>
+			  Awards: {{data?.awards}} <br/>
+			  Ratings: {{data?.rating}} <br/>
+			  Votes: {{data?.votes}} <br/>
+		  </p>
+		</div>
+	  </div>
+	</div>
+  </div>
+
+  <hr>
+  <h3 [innerText]="title"></h3>
+
+<div class="col-md-12" *ngIf="!show_comments" >
+	<app-grid *ngIf="rows" (rowClick)="rowClick($event)" [rows]="rows" [gridConfig]="gridConfig"></app-grid>
+</div>
+
+<div class="col-md-12" *ngIf="show_comments">
+	<app-comments [comments]="comments"></app-comments>
+</div>
+

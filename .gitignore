@@ -1,6 +1,36 @@
 # Angular project
 .vscode/
-angular/
+angular/node_modules
+/node_modules
+angular/package-lock.json
+
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+# System Files
+.DS_Store
+Thumbs.db
+
 # ENV
 Scripts/
 share/

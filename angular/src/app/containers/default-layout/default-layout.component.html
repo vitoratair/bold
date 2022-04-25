@@ -1,0 +1,54 @@
+<app-header
+    [navbarBrandRouterLink]="['/']"
+    [fixed]="true"
+    [navbarBrandFull]="{
+        src: 'assets/img/devoteam-logo.png',
+        width: 'max-content',
+        height: 42,
+        alt: 'Devoteam logo'
+    }"
+    [navbarBrandMinimized]="{
+        src: 'assets/img/brand/sygnet.svg',
+        width: 30,
+        height: 30,
+        alt: 'Devoteam logo'
+    }"
+    [sidebarToggler]="'lg'"
+    [asideMenuToggler]="'lg'"
+>
+    <ul class="nav navbar-nav ml-auto">
+		<h4>Biarvose, azantys</h4>
+    </ul>
+</app-header>
+
+<div class="app-body">
+    <app-sidebar
+        #appSidebar
+        [fixed]="true"
+        [display]="'lg'"
+        [minimized]="sidebarMinimized"
+        (minimizedChange)="toggleMinimize($event)"
+    >
+        <app-sidebar-nav
+            [navItems]="navItems"
+            [perfectScrollbar]
+            [disabled]="appSidebar.minimized"
+        ></app-sidebar-nav>
+
+    </app-sidebar>
+    <!-- Main content -->
+    <main class="main">
+
+        <div class="container-fluid">
+            <router-outlet></router-outlet>
+        </div>
+        <!-- /.container-fluid -->
+    </main>
+
+</div>
+<app-footer>
+    <span class="ml-auto"
+        >Powered by
+        <a href="https://www.devoteam.com/">Devoteam</a></span
+    >
+</app-footer>
