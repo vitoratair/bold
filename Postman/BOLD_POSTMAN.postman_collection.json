@@ -278,7 +278,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/api/movie/?title=Game of Thrones&rating=8.7",
+							"raw": "http://localhost:8000/api/movie/?title=Game of Thrones&rating=8.9",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -296,7 +296,7 @@
 								},
 								{
 									"key": "rating",
-									"value": "8.7"
+									"value": "8.9"
 								}
 							]
 						}
@@ -376,6 +376,41 @@
 								"api",
 								"comment",
 								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Movies episodes by Title & Season & Rating",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/movie/?title=Game of Thrones&season=1&rating=8.9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"movie",
+								""
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "Game of Thrones"
+								},
+								{
+									"key": "season",
+									"value": "1"
+								},
+								{
+									"key": "rating",
+									"value": "8.9"
+								}
 							]
 						}
 					},

@@ -36,8 +36,14 @@ Bearer Authentication faked on database
 
 ## API Tests
  - To running the massive **2** unit tests on the API, run the command
-  ```python manage.py tests```
+  ```python manage.py test```
 
 ## Postman collection
 - Import the Postman collection with all needed request on
 - ```{{root_dir}}/Postman/BOLD.postman_collection.json```
+
+## Sync Movies
+To sync the GOT OMDB episodes you can do it by
+- Postman request (ADAPTERS / OMDB / SYNC MOVIES)
+- UI **Sync from OMDB** button (it not refresh the page automatically just yet)
+
