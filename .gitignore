@@ -47,7 +47,7 @@ __pycache__/
 .Python
 build/
 develop-eggs/
-dist/
+!angular/dist/
 downloads/
 eggs/
 .eggs/
