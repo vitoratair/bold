@@ -10,12 +10,24 @@ from rest_framework.response import Response
 
 from omdb_adapter.connection_service import ConnectionService
 from omdb_adapter.serializers import OmdbMoviesListSerializer
+from drf_yasg.utils import  swagger_auto_schema
 
 logger = logging.getLogger('adapter_omdb')
 
 
 class OmdbSyncAPIView(generics.GenericAPIView, CoreHelper):
+    """
+    ## Overview:
 
+    Receive a GET request to sync movies from OMDB API to **bold** local database.
+    Fetch info from API, serializer the data and send to bold **/api/movie/** API endpoint to be processed and saved\f
+
+    ## Available subscribers
+
+    Each subscriber has a specific payload, the documentation about it can be found on the link below.
+    - <a target="_blank" href="https://www.omdbapi.com/">OMDB</a>
+    \f
+    """
     permission_classes = [Or(permissions.IsAdminUser, permissions.IsAuthenticated, TokenHasReadWriteScope)]
     serializer_class = OmdbMoviesListSerializer
 
@@ -39,6 +51,14 @@ class OmdbSyncAPIView(generics.GenericAPIView, CoreHelper):
         url = "http://localhost:8000/api/movie/" ### DEV ONLY
         self.make_post_core(url, request.auth, data_serialized.data)
 
+    @swagger_auto_schema(
+        operation_id='omdb_sync',
+        operation_summary="OMDB - Sync movies",
+        responses = {
+            200: '',
+            404: ' Targeted subscriber was not found.'
+        }
+    )
     def get(self, request):
         logger.info("OmdbSyncAPIView - GET received")
 

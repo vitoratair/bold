@@ -2,7 +2,7 @@ from core.models import Subscriber
 from django.db import models
 from django.utils import timezone
 from django.db.models import Avg
-
+from auditlog.registry import auditlog
 
 class Movie(models.Model):
     """
@@ -52,8 +52,11 @@ class Movie(models.Model):
         ).aggregate(
             Avg('rating')
         )
+        if queryset.get('rating__avg') is None:
+            return 'N/A'
 
         return '{0:.2f}'.format(queryset.get('rating__avg'))
+
 
 class Episode(models.Model):
     """
@@ -85,3 +88,20 @@ class Episode(models.Model):
 
     def __str__(self):
         return "%s - Season %s | %s" % (self.movie.title, self.season, self.title)
+
+class Comment(models.Model):
+    """
+    Stores a single comment entry
+    Related to :model:`core.Episode`
+    """
+    episode = models.ForeignKey('Episode', related_name="comment", on_delete=models.CASCADE)
+    comment = models.TextField()
+    created_at = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return "%s | %s" % (self.episode.title, self.comment[0:100])
+
+
+auditlog.register(Movie)
+auditlog.register(Episode)
+auditlog.register(Comment)

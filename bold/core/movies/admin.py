@@ -1,5 +1,5 @@
 from django.contrib import admin
-from core.movies.models import Movie, Episode
+from core.movies.models import Movie, Episode, Comment
 
 
 class MovieAdmin(admin.ModelAdmin):
@@ -11,4 +11,4 @@ class EpisodeAdmin(admin.ModelAdmin):
 
 admin.site.register(Movie, MovieAdmin)
 admin.site.register(Episode, EpisodeAdmin)
-
+admin.site.register(Comment)

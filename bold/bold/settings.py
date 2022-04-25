@@ -46,7 +46,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'auditlog',
+    'corsheaders',
     'drf_yasg',
+    'rest_framework',
     'rest_framework_swagger',
     'oauth2_provider',
     'core',
@@ -57,15 +60,22 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'auditlog.middleware.AuditlogMiddleware',
     'admin_reorder.middleware.ModelAdminReorder',
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:4200","http://127.0.0.1:8080",
+]
+
 ROOT_URLCONF = 'bold.urls'
+
 
 TEMPLATES = [
     {
@@ -217,7 +227,7 @@ ADMIN_REORDER = (
     },
     {
         'app': 'core', 'label': 'Resource',
-        'models': ('core.Movie', 'core.Episode')
+        'models': ('core.Movie', 'core.Episode', 'core.Comment')
     },
     {
         'app': 'omdb_adapter', 'label': 'Adapter',

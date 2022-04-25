@@ -21,13 +21,16 @@ from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 
+description = """
+Swagger simple API documentation!\\
+Here you'll find all the useful resources to start using our **OMDB movie** integration.\\
+"""
+
 schema_view = get_schema_view(
    openapi.Info(
       title="BOLD project",
       default_version='v1',
-      description="Bold challenge fron an movie resource API",
-      contact=openapi.Contact(email="vitor.ruts@gmail.com"),
-      license=openapi.License(name="BSD License"),
+      description=description
    ),
    public=True,
    permission_classes=[permissions.AllowAny],

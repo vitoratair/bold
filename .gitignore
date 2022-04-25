@@ -1,3 +1,6 @@
+# Angular project
+.vscode/
+angular/
 # ENV
 Scripts/
 share/

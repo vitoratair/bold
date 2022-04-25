@@ -14,5 +14,46 @@
         "name": "URLS",
         "mapper": {"movie": "http://www.omdbapi.com/?t=%s&%s", "season": "http://www.omdbapi.com/?i=%s&%s"}
       }
+    },
+    {
+      "model": "core.Subscriber",
+      "pk": 1,
+      "fields": {
+        "client": "KPcv7QNfEaZdFTkjX0iE8i7INPSMmkzyioaMoWFt",
+        "name": "OMDB",
+        "resource": "movies"
+      }
+    },
+    {
+      "model": "oauth2_provider.Application",
+      "pk": 1,
+      "fields": {
+        "client_id": "KPcv7QNfEaZdFTkjX0iE8i7INPSMmkzyioaMoWFt",
+        "user_id": 1,
+        "redirect_uris": "",
+        "client_type": "confidential",
+        "authorization_grant_type": "password",
+        "client_secret": "0LL8rj4eF4BWouNcZzYTlWHPtspi6TEMjOUjLohrO5TndomLdJPNDLLqj8XI3ZRmQQud1tMxEMHsvnqTkXqH6U0HWkkzWwpTPrKJDDjIFY6qh1YS5XEIDJXNsWcGTyvp",
+        "name": "OMDB",
+        "skip_authorization": false,
+        "created": "2022-04-25",
+        "updated": "2022-04-25",
+        "algorithm": ""
+      }
+    },
+    {
+      "model": "oauth2_provider.AccessToken",
+      "pk": 1,
+      "fields": {
+        "user_id": 1,
+        "token": "1PgxQwoSV3HHuR3eSuM6YLDxVB3QBU",
+        "application_id": 1,
+        "expires": "2030-01-01 00:00:59",
+        "scope": "read write groups",
+        "created": "2022-04-25",
+        "updated": "2022-04-25"
+      }
     }
-  ]
+]
+
+

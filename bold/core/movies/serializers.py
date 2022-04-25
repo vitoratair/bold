@@ -1,6 +1,6 @@
 import logging
 
-from core.movies.models import Episode, Movie
+from core.movies.models import Movie, Episode, Comment
 from rest_framework import serializers
 
 logger = logging.getLogger('api_movie')
@@ -11,7 +11,6 @@ class EpisodeListSerializer(serializers.ModelSerializer):
         model = Episode
         exclude = (
             'subscriber_movie_episode_id',
-            'movie'
         )
 
 class MovieSerializer(serializers.ModelSerializer):
@@ -23,3 +22,9 @@ class MovieSerializer(serializers.ModelSerializer):
             'created_at',
             'subscriber'
         )
+
+class EpisodeCommentSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Comment
+        fields = '__all__'
