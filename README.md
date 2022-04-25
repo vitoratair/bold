@@ -24,7 +24,7 @@ Bearer Authentication faked on database
 ```docker-compose up --build```
 - All configuration is made on docker scripts, like feed database with initial data.
 - Access the Django admin using the [link](http://127.0.0.1:8000/admin/)
-- Access the api using the [link](http://127.0.0.1:8000/api)
+- Access the api using the [link](http://127.0.0.1:8000/swagger/)
 
 ## UI instalation
 
