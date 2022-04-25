@@ -1,6 +1,6 @@
 # BOLD project
 
-This document aim to help the instalation on both **API** and **UI** project for the **BOLD CHALLANGE 2021**.
+This document aim to help the installation on both API and UI project for the **BOLD CHALLANGE 2021**.
 
 Credentials to access the Django admin
 - **Username**: bold
@@ -10,13 +10,13 @@ Bearer Authentication faked on database
 - Bearer 1PgxQwoSV3HHuR3eSuM6YLDxVB3QBU
 
 ##### API
-- All running (docker) on 8000 http://localhost:8000
+- Running (docker) on 8000 http://localhost:8000
 - Python
 - Django
 
 ##### Angular 11
-- All running (docker) on 8080 http://localhost:8080
-- Angular project with static already compioled on /dist
+- Running (docker) on 8080 http://localhost:8080
+- Angular project with static already compiled on /dist
 
 ## API instalation
 
@@ -28,7 +28,7 @@ Bearer Authentication faked on database
 
 ## UI instalation
 
-- The UI was made on Angular, but the project was already compiled on /dist and is being serve by ngnix on the 8080 port.
+- The UI was made on Angular, but the project was already compiled on /dist and is being serve by nginx on the 8080 port.
 - Go to /{root_project}/angular
 - Initialize docker images running the command
 - ```docker-compose up --build```
@@ -36,7 +36,7 @@ Bearer Authentication faked on database
 
 ## API Tests
  - To running the massive **2** unit tests on the API, run the command
-  ```make tests```
+  ```python manage.py tests```
 
 ## Postman collection
 - Import the Postman collection with all needed request on

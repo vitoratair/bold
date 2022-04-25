@@ -1,0 +1,406 @@
+{
+	"info": {
+		"_postman_id": "035f0d0f-4e89-41ab-afd4-c0ae0cdeef92",
+		"name": "BOLD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AUTH",
+			"item": []
+		},
+		{
+			"name": "ADAPTERs",
+			"item": [
+				{
+					"name": "OMDB",
+					"item": [
+						{
+							"name": "SYNC MOVIES",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "1PgxQwoSV3HHuR3eSuM6YLDxVB3QBU",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "ac6ndYnJVoRQripjdONcV88L7BDG8q",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/omdb/sync/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"omdb",
+										"sync",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "CLEAN DATABASE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1PgxQwoSV3HHuR3eSuM6YLDxVB3QBU",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "ac6ndYnJVoRQripjdONcV88L7BDG8q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/movie/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"movie",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "RESOURCEs",
+			"item": [
+				{
+					"name": "GET Movies episodes ALL",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1PgxQwoSV3HHuR3eSuM6YLDxVB3QBU",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "ac6ndYnJVoRQripjdONcV88L7BDG8q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/movie/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"movie",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Movies episodes by Title",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/movie/?title=Game of Thrones",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"movie",
+								""
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "Game of Thrones"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Movies episodes by Title & Season",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/movie/?title=Game of Thrones&season=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"movie",
+								""
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "Game of Thrones"
+								},
+								{
+									"key": "season",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Movies episodes by Title & Season & Episode",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/movie/?title=Game of Thrones&season=1&episode=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"movie",
+								""
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "Game of Thrones"
+								},
+								{
+									"key": "season",
+									"value": "1"
+								},
+								{
+									"key": "episode",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Movies episodes by Episode_ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/movie/?episode_id=306",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"movie",
+								""
+							],
+							"query": [
+								{
+									"key": "episode_id",
+									"value": "306"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Comments ALL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/comment/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"comment",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Comments by Episode",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/comment/?episode=246",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"comment",
+								""
+							],
+							"query": [
+								{
+									"key": "episode",
+									"value": "246"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Comments by Comment_ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/comment/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"comment",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"comment\": \"Winter has come!!!\",\r\n    \"episode\": 246\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/comment/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"comment",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.globals.set(\"variable_key\", \"1PgxQwoSV3HHuR3eSuM6YLDxVB3QBU\");"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "1PgxQwoSV3HHuR3eSuM6YLDxVB3QBU",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
